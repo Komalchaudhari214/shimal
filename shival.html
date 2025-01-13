@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Single File</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        header {
+            width: 100%;
+            background-color: #4CAF50;
+            padding: 1rem;
+            text-align: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 2rem auto;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .section {
+            padding: 1.5rem;
+        }
+
+        h2 {
+            margin-bottom: 1rem;
+        }
+
+        .card {
+            background-color: #e8f5e9;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1rem;
+        }
+
+        .card p {
+            margin-bottom: 0.5rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 0.75rem;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: #45a049;
+        }
+
+        .alert {
+            padding: 1rem;
+            margin: 1rem 0;
+            background-color: #ffc107;
+            color: #856404;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <header>Admin Dashboard - Fisheries Application</header>
+
+    <div class="container">
+        <!-- Real-Time Data Section -->
+        <div class="section">
+            <h2>Real-Time Data Monitoring</h2>
+            <div class="card">
+                <p>Water Quality: <strong id="water-quality">Good</strong></p>
+                <p>Fish Health Status: <strong id="fish-health">Healthy</strong></p>
+            </div>
+        </div>
+
+        <!-- User Management Section -->
+        <div class="section">
+            <h2>User Management</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>User ID</th>
+                        <th>Name</th>
+                        <th>Role</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="user-table">
+                    <tr>
+                        <td>1</td>
+                        <td>Admin User</td>
+                        <td>Admin</td>
+                        <td><button class="btn">Edit</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Alert Management Section -->
+        <div class="section">
+            <h2>Alerts and Notifications</h2>
+            <div class="alert" id="alert">No alerts at the moment.</div>
+        </div>
+    </div>
+
+    <script>
+        // Mock data updates for real-time simulation
+        const waterQuality = document.getElementById('water-quality');
+        const fishHealth = document.getElementById('fish-health');
+        const alertBox = document.getElementById('alert');
+
+        // Simulate real-time updates every 5 seconds
+        setInterval(() => {
+            const randomQuality = Math.random() > 0.5 ? 'Good' : 'Poor';
+            const randomHealth = Math.random() > 0.5 ? 'Healthy' : 'Unhealthy';
+
+            waterQuality.textContent = randomQuality;
+            fishHealth.textContent = randomHealth;
+
+            if (randomQuality === 'Poor' || randomHealth === 'Unhealthy') {
+                alertBox.textContent = 'Warning: Immediate action needed!';
+                alertBox.style.backgroundColor = '#f8d7da';
+                alertBox.style.color = '#721c24';
+            } else {
+                alertBox.textContent = 'No alerts at the moment.';
+                alertBox.style.backgroundColor = '#ffc107';
+                alertBox.style.color = '#856404';
+            }
+        }, 5000);
+    </script>
+</body>
+</html>
